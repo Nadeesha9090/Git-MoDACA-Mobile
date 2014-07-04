@@ -7,7 +7,7 @@
 <script type="text/javascript" charset="utf-8">
 
 function onDeviceReady() { 
- persistData(fname,lname,age,gramaNiladhariDivision,address,race,income);
+ persistData(data1, data2, data3);
 }
 </script>
 
@@ -18,53 +18,24 @@ function onDeviceReady() {
  <input type="button" class="buttonClass" onclick='window.location="index.html"' value="Return">
 
  <form id="userInput" action ="" method="GET"> 
- 		<div data-role="content">
-		
+ 
 			<div class="fname" data-role="fieldcontain">
 				<label for="fname"> Home ID </label> <input name="fname"
-					id="fname" placeholder="H0001" value="" data-mini="true" type="text">
+					id="data1" placeholder="H0001" value="" data-mini="true" type="text">
 			</div>
 			
 			<div class="lname" data-role="fieldcontain">
 				<label for="lname"> Owner </label> <input name="lname"
-					id="lname" placeholder="Aberathne" value="" type="text">
+					id="data2" placeholder="Aberathne" value="" type="text">
 			</div>
 			
 			<div class="age" data-role="fieldcontain">
-				<label for="age"> Contact No </label> <input name="age" id="age"
-					placeholder="071-9545-073" value="" type="number">
+				<label for="age"> Contact No </label> <input name="age" 
+				id="data3" placeholder="071-9545-073" value="" type="number">
 			</div>
-			
-			<div data-role="fieldcontain">
-				<label for="select-choice-1" class="select">GramaNiladhari Division</label>
-				<select name="select-choice-GNW" id="select-choice-GNW">
-					<option id ="gramaNiladhariDivision " value="GramaNiladhari Division 1">GramaNiladhari Division 1</option>
-					<option id ="gramaNiladhariDivision " value="GramaNiladhari Division 2">GramaNiladhari Division 2</option>
-					<option id ="gramaNiladhariDivision " value="GramaNiladhari Division 3">GramaNiladhari Division 3</option>
-					<option id ="gramaNiladhariDivision " value="GramaNiladhari Division 4">GramaNiladhari Division 4</option>
-				</select>
-			</div>
-			
-			<div data-role="fieldcontain">
-				<label for="textarea">Address:</label>
-				<textarea cols="40" rows="8" name="address" id="address"></textarea>
-			</div>
-			
-			<div class="ui-block-a"><button type="submit" data-theme="d">Location in a Map</button></div>
-			
-			<div data-role="fieldcontain">
-	         <label for="name">Race: </label>
-	         <input type="text" name="race" id="race" value=""  />
-			</div>
-			
-			<div data-role="fieldcontain">
-	         <label for="name">Income Rs:</label>
-	         <input type="text" name="income" id="income" value=""  />
-			</div>
-			
-			<input class="buttonClass" type="button" value="Insert Data" onclick="persistData(this.form)">
-		</div>
  
+ <br><br>
+ <input class="buttonClass" type="button" value="Insert Data" onclick="persistData(this.form)">
  </form>
 
  <p><em>Press and hold on the text to copy and export. To scroll contents, tap in field and wait for keyboard, then scroll.</em></p>
@@ -75,10 +46,8 @@ function onDeviceReady() {
  <input type="button" class="buttonClass" style="background-color: #faa;" onclick='dropDb();' value="Delete Database">
 
 <!-- insert query results here as table rows --> 
- 
-
-
- <input type="button" class="buttonClass" onclick='window.location="http://iphonedevlog.wordpress.com/2014/03/21/cordova-websql-database-with-user-added-data/"' value="View Code on iPhoneDevLog">
+ <table><th><tr><td class="headercell">ID</td><td class="headercell">data1</td><td class="headercell">data2</td><td class="headercell">data3</td></tr></th></table>
+ <div id="output2"></div>
 </div>
 
 <script>
@@ -88,44 +57,24 @@ Perhaps get it from: http://rickharrison.github.io/validate.js/ */
 
 // set form field input
 
-function persistData (fname,lname,age,gramaNiladhariDivision,address,race,income){
+function persistData(data1, data2, data3) {
 // get form entries
  var form = document.getElementById("userInput"); 
- var fname = form.fname.value;
- var lname = form.lname.value;
- var age = form.age.value;
- var gramaNiladhariDivision = form.gramaNiladhariDivision.value;
- var address = form.address.value;
- var race = form.race.value;
- var income = form.income.value;
- 
+ var formdata1 = form.data1.value;
+ var formdata2 = form.data2.value;
+ var formdata3 = form.data3.value;
 // set value if input was blank
- if (fname === "undefined") { fname = "" }; 
- if (lname === "undefined") { lname = "" };
- if (age === "undefined") { age = "" };
- if (gramaNiladhariDivision  === "undefined") { gramaNiladhariDivision  = "" };
- if (address === "undefined") { address = "" };
- if (race === "undefined") { race = "" };
- if (income === "undefined") { income = "" };
- 
+ if (formdata1 === "undefined") { formdata1 = "" }; 
+ if (formdata2 === "undefined") { formdata2 = "" };
+ if (formdata3 === "undefined") { formdata3 = "" };
 // check form entries on console
- console.log("datafname = " + fname); 
- console.log("datalname = " + lname);
- console.log("dataage = " + age);
- console.log("datagramaNiladhariDivision = " + gramaNiladhariDivision);
- console.log("dataaddress = " + address);
- console.log("datarace = " + race);
- console.log("dataincome = " + income);
-
+ console.log("data1 = " + formdata1); 
+ console.log("data2 = " + formdata2);
+ console.log("data3 = " + formdata3);
 // key, value pair into localStorage
- localStorage.setItem('fnameSet', fname); 
- localStorage.setItem('lnameSet', lname); 
- localStorage.setItem('ageSet', age);
- localStorage.setItem('gramaNiladhariDivisionSet', gramaNiladhariDivision);
- localStorage.setItem('addressSet', address);
- localStorage.setItem('raceSet', race);
- localStorage.setItem('incomeSet',income);
- 
+ localStorage.setItem('formdata1Set', formdata1); 
+ localStorage.setItem('formdata2Set', formdata2); 
+ localStorage.setItem('formdata3Set', formdata3);
 // set the current time as the id to make it unique id
  var d = new Date();
  var new_id = d.getTime();
@@ -142,22 +91,16 @@ function startDB() {
 // Form the query
 
 function populateDB(tx) {
- var formdata1Get = localStorage.getItem('fnameSet'); // get data from localStorage
- var formdata2Get = localStorage.getItem('lnameSet');
- var formdata3Get = localStorage.getItem('ageSet');
- var formdata4Get = localStorage.getItem('gramaNiladhariDivisionSet');
- var formdata5Get = localStorage.getItem('addressSet');
- var formdata6Get = localStorage.getItem('raceSet');
- var formdata7Get = localStorage.getItem('incomeSet');
-
- 
+ var formdata1Get = localStorage.getItem('formdata1Set'); // get data from localStorage
+ var formdata2Get = localStorage.getItem('formdata2Set');
+ var formdata3Get = localStorage.getItem('formdata3Set');
  var new_idGet = localStorage.getItem('new_idSet');
 // if no data has been entered, show note and stop the process
  if (formdata1Get.length < 1 && formdata2Get.length < 1 && formdata3Get.length < 1) { 
  document.getElementById("output").innerHTML = "\nPLEASE ENTER DATA"; return false; 
  }
- tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id TEXT NOT NULL, fname TEXT NULL, lname TEXT NULL,  age TEXT NULL, gramaNiladhariDivision TEXT NULL, address TEXT NULL, race TEXT NULL, income TEXT NULL)'); 
- tx.executeSql('INSERT INTO DEMO (id, fname, age, gramaNiladhariDivision,address,race,income) VALUES (\"' + new_idGet + '\"' + ', \"' + formdata1Get + '\",\"' + formdata2Get + '\",\"' + formdata3Get + '\",\"' + formdata4Get + '\",\"' + formdata5Get + '\", \"' + formdata6Get + '\", \"' + formdata7Get + '\")');
+ tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id TEXT NOT NULL, data1 TEXT NULL, data2 TEXT NULL, data3 TEXT NULL)'); 
+ tx.executeSql('INSERT INTO DEMO (id, data1, data2, data3) VALUES (\"' + new_idGet + '\"' + ', \"' + formdata1Get + '\", \"' + formdata2Get + '\", \"' + formdata3Get + '\")');
  queryDB(tx);
 }
 
@@ -178,24 +121,19 @@ function querySuccess(tx, results) {
  var rowid = results.rows.item(i).id;
 // Display the query results within <textarea id="output"></textarea>
  document.getElementById("output").innerHTML += "\nID = " + results.rows.item(i).id +
- "\nFirst Name = " + results.rows.item(i).fname +
- "\nLast Name = " + results.rows.item(i).lname +
- "\nAge = " + results.rows.item(i).age +
- "\nGrammerNiladhari Division = " + results.rows.item(i).gramaNiladhariDivision +
- "\nAddress = " + results.rows.item(i).address +
- "\nRace = " + results.rows.item(i).race +
- "\nIncome = " + results.rows.item(i).income + "\n";
+ "\ndata1 = " + results.rows.item(i).data1 +
+ "\ndata2 = " + results.rows.item(i).data2 +
+ "\ndata3 = " + results.rows.item(i).data3 + "\n";
  
-
+// Display the query results as a table within <div id="output2"></div>
+ document.getElementById("output2").innerHTML += "<table><tr><td><button class='buttonDel' onclick='delRecord(\"" + rowid + "\")' value='Delete'>Delete</button><br>" + results.rows.item(i).id + "</td><td>" + results.rows.item(i).data1 + "</td><td>" + results.rows.item(i).data2 + "</td><td>" + results.rows.item(i).data3 + "</td></tr></table>";
+ console.log("rowid = " + rowid); 
+ }
 // reset form input fields to blank
  var form = document.getElementById("userInput"); 
- form.fname.value = "";
- form.lname.value = "";
- form.age.value = ""; 
- form.gramaNiladhariDivision.value = "";
- form.address.value = "";
- form.race.value = "";
- form.income.value = "";
+ form.data1.value = "";
+ form.data2.value = "";
+ form.data3.value = ""; 
 }
 
 // Show DB onload (next two functions)
